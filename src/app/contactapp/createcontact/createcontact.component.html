@@ -1,0 +1,29 @@
+<div>
+    <h1>Enter Details to Create Contact</h1>
+</div>
+<div class="row">
+    <div class="form col-md-11">
+        <i class="fa fa-user-o"></i>
+        <input type="text" placeholder="Name" name="name" id="name" [(ngModel)]="contact.name"><br>
+        <p id="name-msg"></p>
+        <i class="fa fa-users"></i>
+        <input type="text" placeholder="Surname" name="sname" id="sname" [(ngModel)]="contact.sname"><br>
+        <p id="sname-msg"></p>
+        <i class="fa fa-building-o"></i>
+        <input type="text" placeholder="Company" name="" id="" [(ngModel)]="contact.company"><br>
+        <p id="comp-msg"></p>
+        <i class="fa fa-envelope-o"></i>
+        <input type="text" placeholder="Email" name="email" id="email" [(ngModel)]="contact.email"><br>
+        <p id="email-msg"></p>
+        <i class="fa fa-phone "></i>
+        <input type="text" placeholder="Phone" name="phone" id="phone" [(ngModel)]="contact.mobileNumber"><br>
+        <p id="phone-msg"></p>
+
+        <button  *ngIf="create" id="save" (click)="save()">Save</button>
+        <button  *ngIf="!create" id="update" (click)="update()">Update</button>
+        <button (click)="reset()" id="reset">Reset</button>
+    </div>
+    <div class="heading col-md-1">
+        <button (click)="close()" class="close-btn">Close</button>
+    </div>
+</div>

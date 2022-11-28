@@ -1,0 +1,51 @@
+<h1><i class="fa fa-user"></i> Contact Book</h1>
+<div class="row">
+    <div class="col-md-3">
+        <div>
+            <button class="btn" (click)="createContact()"><i class="fa fa-plus"> Create Contact</i></button>
+        </div>
+    </div>
+    <div class="col-md-8 tab">
+        <table class="table table-striped">
+            <tr>
+                <th>Name</th>
+                <th>Surname</th>
+                <th>Company</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+            <tbody *ngFor="let con of contact;let i=index;">
+                <td>{{con.name}}</td>
+                <td>{{con.sname}}</td>
+                <td>{{con.company}}</td>
+                <td>{{con.email}}</td>
+                <td>{{con.mobileNumber}}</td>
+                <td><button (click)="edit(i)" class="edit">Edit</button></td>
+                <td><button (click)="deletex(i)" data-toggle="modal" data-target="#DeleteModal" class="delete">Delete</button></td>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+<div class="modal" id="DeleteModal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-modal-header">
+                <h4>Delete Confirmation</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="row col-md-12">
+                    <h3>Do you want to delete ?</h3>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn cancel-button" (click)="fordelete()" data-dismiss="modal" >Yes</button>
+                <button class="btn cancel-button" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>

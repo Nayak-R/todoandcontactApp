@@ -1,0 +1,45 @@
+
+h1{
+    margin: 50px;
+    padding: 10px;
+    background-color: aqua;
+    text-align: center;
+}
+input{
+    margin-left: 5px;
+    height: 50px;
+    width: 500px;
+    border: none;
+    border-bottom: 1px solid ;
+}
+button{
+    display: inline-block;
+    height: 40px;
+    width: 100px;
+    border: none;
+    margin: 40px 5px 50px 5px;
+    background-color: chartreuse;
+    border-radius: 8px;
+}
+button:hover{
+    background-color: blue;
+    color: aliceblue;
+}
+.form{
+    text-align: center;
+
+}
+.close-btn{
+    background-color: rgb(203, 201, 201);
+    color: red;
+    margin: 0px 50px 0px 0px;
+    float: right;
+}
+.close-btn:hover{
+    background-color: rgb(255, 0, 106);
+    color: white;
+}
+.heading{
+    width: 100%;
+    height: auto;
+}
