@@ -1,4 +1,21 @@
-<a href="" routerLink="todoapp">TODOAPP</a><br>
-<a href="" routerLink="contactapp">CONTACTAPP</a>
 
-<router-outlet></router-outlet>
+
+<mat-toolbar>
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" routerLink="">
+        <mat-icon>home</mat-icon>
+    </button>
+    <span>My Angular Application</span>
+    <span class="example-spacer"></span>
+    <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon"
+        routerLink="todoapp">
+        TODO APP
+    </button>
+    <h1>|</h1>
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon"
+        routerLink="contactapp">
+        CONTACT APP
+    </button>
+</mat-toolbar>
+
+
+<router-outlet> </router-outlet>

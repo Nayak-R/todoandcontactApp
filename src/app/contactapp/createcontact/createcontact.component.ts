@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ContactappService } from '../contactapp.service';
 import { Contact } from '../enity/Contact';
 
 @Component({
@@ -10,61 +13,82 @@ import { Contact } from '../enity/Contact';
 export class CreatecontactComponent implements OnInit {
   title = 'Create Contact';
   create = true;
-  editedIndex!: string;
+  editedId!: string;
   contact!: Contact;
 
-  constructor(private router: Router, private route: ActivatedRoute) { }
+  get email() {
+    return this.createform.get('email')
+  }
+  get mobileNumber() {
+    return this.createform.get('mobileNumber')
+  }
+  get name() {
+    return this.createform.get('name')
+  }
+  get sname() {
+    return this.createform.get('sname')
+  }
+  get company() {
+    return this.createform.get('company')
+  }
+  createform = new FormGroup({
+    email: new FormControl('', [Validators.required, Validators.email]),
+    name: new FormControl('', [Validators.required]),
+    sname: new FormControl('', [Validators.required,]),
+    company: new FormControl('', [Validators.required,]),
+
+    mobileNumber: new FormControl('', [Validators.required,
+    Validators.pattern("^[0-9]*$"),
+    Validators.minLength(10),
+    Validators.maxLength(10)])
+
+  });
+
+  constructor(private router: Router, private route: ActivatedRoute, private titleset: Title, private contactappService: ContactappService) { }
 
   ngOnInit(): void {
+    this.titleset.setTitle(this.title)
+
     let createParam = this.route.snapshot.params['create'];
-    this.editedIndex = this.route.snapshot.params['index'];
+    this.editedId = this.route.snapshot.params['index'];
 
     if (createParam === 'true') {
       this.create = true;
-      this.contact = new Contact();
+      this.contact=new Contact();
     } else {
-      let contacts = JSON.parse(localStorage.getItem("contactlist") as any);
-      this.contact = JSON.parse(JSON.stringify(contacts[this.editedIndex]));
+      this.contactappService.getContactById(this.editedId).subscribe(data => {
+        this.contact = <Contact>data;
+      }, error => {
+        console.log("error in loading")
+      })
       this.create = false;
     }
+
+
   }
 
   save() {
 
-    let contactlist = JSON.parse(window.localStorage.getItem("contactlist") as string);
+    this.contactappService.addContact(this.contact).subscribe(data => {
+      this.router.navigate(['contactapp/viewcontact']);
+    }, Error => {
+      window.alert("Error occured while adding the contact details.")
+    })
 
-    if (contactlist === null) {
-      contactlist = [];
-    }
-    contactlist.push(this.contact);
-
-    localStorage.setItem("contactlist", JSON.stringify(contactlist));
-
-    this.router.navigate(['contactapp/viewcontact']);
   }
-
-
 
   close() {
     this.router.navigate(['contactapp/viewcontact']);
   }
 
   update() {
-    let contactlist = JSON.parse(window.localStorage.getItem("contactlist") as string);
 
-    if (contactlist === null) {
-      contactlist = [];
-    }
+    this.contactappService.updateContact(this.contact, this.editedId).subscribe(data => {
+      this.router.navigate(['contactapp/viewcontact']);
+    }, Error => {
+      window.alert("Error occured while updating the contact details.")
+    })
 
-    contactlist[this.editedIndex].name = this.contact.name;
-    contactlist[this.editedIndex].sname = this.contact.sname;
-    contactlist[this.editedIndex].company = this.contact.company;
-    contactlist[this.editedIndex].email = this.contact.email;
-    contactlist[this.editedIndex].mobileNumber = this.contact.mobileNumber;
-
-    localStorage.setItem("contactlist", JSON.stringify(contactlist));
-
-    this.router.navigate(['contactapp/viewcontact']);
   }
 
   reset() {

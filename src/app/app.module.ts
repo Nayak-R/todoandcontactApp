@@ -6,6 +6,13 @@ import { AppComponent } from './app.component';
 import { TodoappComponent } from './todoapp/todoapp.component';
 import { ContactappComponent } from './contactapp/contactapp.component';
 import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatIconModule} from '@angular/material/icon';
+import {MatButtonModule} from '@angular/material/button';
+import {DataService} from './data.service'
+import { UrlConstantService } from './url-constant.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -16,9 +23,14 @@ import { FormsModule } from '@angular/forms';
   imports: [
     FormsModule,
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatButtonModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [DataService, UrlConstantService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,0 +1,94 @@
+.container {
+    display: flex;
+}
+
+.heading {
+    color: rgb(144, 0, 255);
+    font-size: 50px;
+    font-weight: bold;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.body-1 {
+    background-color: bisque;
+    text-align: center;
+}
+
+
+#edit-btn,
+#delete-btn {
+    background-color: rgb(214, 146, 205);
+    border-radius: 5px;
+    border: solid 1px;
+    color: white;
+    border-color: darkcyan
+}
+
+#edit-btn:hover,
+#delete-btn:hover {
+    background-color: aqua;
+    color: black;
+}
+
+.btn{
+    background-color: rgb(0, 255, 94);
+    border: none;
+    padding: 5px;
+    border-radius: 10px;
+}
+.btn:hover{
+    background-color: darkcyan;
+    color: white;
+}
+
+#delete-msg{
+    height: 150px;
+    width: 500px;
+    margin-top: 150px;
+    margin-left: 30%;
+    display: none;
+    background-color: rgb(0, 0, 255);
+    text-align: center;
+    border: solid 1px rgb(35, 231, 4);
+    border-radius: 10px;
+    padding: 25px;
+    color: white;
+}
+#delete-msg button{
+    background-color: rgb(138, 231, 16);
+    border: none;
+    border-radius: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-top: 25px;
+}
+#delete-msg button:hover{
+    background-color: rgb(255, 0, 238);
+}
+
+.add-btn {
+    padding: 10px;
+    background-color: dodgerblue;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.add-btn:hover {
+    background-color: aqua;
+    color: blue;
+}
+
+/* Bellow css comes with mat table */
+.demo-table {
+    width: 100%;
+  }
+  
+  .demo-button-container {
+    padding-bottom: 16px;
+  }
+  
+  .demo-button + .demo-button {
+    margin-left: 8px;
+  }

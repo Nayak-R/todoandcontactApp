@@ -4,7 +4,10 @@ import { CommonModule } from '@angular/common';
 import { ContactappRoutingModule } from './contactapp-routing.module';
 import { ViewcontactComponent } from './viewcontact/viewcontact.component';
 import { CreatecontactComponent } from './createcontact/createcontact.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatTableModule } from '@angular/material/table';
+import { ContactappService } from './contactapp.service';
+import { ContactappComponent } from './contactapp.component';
 
 
 @NgModule({
@@ -15,7 +18,11 @@ import { FormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     FormsModule,
-    ContactappRoutingModule
-  ]
+    ReactiveFormsModule,
+    ContactappRoutingModule,
+    MatTableModule
+  ],
+  bootstrap: [ContactappComponent],
+  providers: [ContactappService]
 })
 export class ContactappModule { }

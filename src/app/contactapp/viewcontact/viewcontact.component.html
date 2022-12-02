@@ -1,31 +1,61 @@
+
 <h1><i class="fa fa-user"></i> Contact Book</h1>
 <div class="row">
     <div class="col-md-3">
-        <div>
-            <button class="btn" (click)="createContact()"><i class="fa fa-plus"> Create Contact</i></button>
+        <div class="addbtn-div">
+            <button class="addbtn" (click)="createContact()"><i class="fa fa-plus"> Create Contact</i></button>
         </div>
     </div>
-    <div class="col-md-8 tab">
-        <table class="table table-striped">
-            <tr>
-                <th>Name</th>
-                <th>Surname</th>
-                <th>Company</th>
-                <th>Email</th>
-                <th>Phone</th>
-                <th>Edit</th>
-                <th>Delete</th>
-            </tr>
-            <tbody *ngFor="let con of contact;let i=index;">
-                <td>{{con.name}}</td>
-                <td>{{con.sname}}</td>
-                <td>{{con.company}}</td>
-                <td>{{con.email}}</td>
-                <td>{{con.mobileNumber}}</td>
-                <td><button (click)="edit(i)" class="edit">Edit</button></td>
-                <td><button (click)="deletex(i)" data-toggle="modal" data-target="#DeleteModal" class="delete">Delete</button></td>
-            </tbody>
-        </table>
+    <div class="col-md-8 ">
+        <table mat-table class="mat-elevation-z8 demo-table" [dataSource]="dataSource" >
+            <!-- Position Column -->
+            <ng-container matColumnDef="sl">
+              <th mat-header-cell *matHeaderCellDef>No.</th>
+              <td mat-cell  *matCellDef="let element; let i = index;">{{i+1}}</td>
+            </ng-container>
+          
+            <!-- Name Column -->
+            <ng-container matColumnDef="name">
+              <th mat-header-cell *matHeaderCellDef>Name</th>
+              <td mat-cell *matCellDef="let element">{{element.name}}</td>
+            </ng-container>
+          
+            <!-- Weight Column -->
+            <ng-container matColumnDef="sname">
+              <th mat-header-cell *matHeaderCellDef>Surname</th>
+              <td mat-cell *matCellDef="let element">{{element.sname}}</td>
+            </ng-container>
+          
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="company">
+              <th mat-header-cell *matHeaderCellDef>Company</th>
+              <td mat-cell *matCellDef="let element">{{element.company}}</td>
+            </ng-container>
+        
+            <ng-container matColumnDef="email">
+                <th mat-header-cell *matHeaderCellDef>Email</th>
+                <td mat-cell *matCellDef="let element">{{element.email}}</td>
+              </ng-container>
+        
+              <ng-container matColumnDef="mobileNumber">
+                <th mat-header-cell *matHeaderCellDef>Phone</th>
+                <td mat-cell *matCellDef="let element">{{element.mobileNumber}}</td>
+              </ng-container>
+        
+              <ng-container matColumnDef="edit">
+                <th mat-header-cell *matHeaderCellDef>Edit</th>
+                <td mat-cell *matCellDef="let element; let i = index;"><button (click)="edit(element.id)" class="edit">Edit</button></td>
+              </ng-container>
+        
+              <ng-container matColumnDef="delete">
+                <th mat-header-cell *matHeaderCellDef>Delete</th>
+                <td mat-cell *matCellDef="let element; let i = index;"><button (click)="deletex(element.id)" data-toggle="modal" data-target="#DeleteModal" class="delete">Delete</button></td>
+              </ng-container>
+          
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+        
     </div>
 
 </div>
@@ -43,8 +73,8 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button class="btn cancel-button" (click)="fordelete()" data-dismiss="modal" >Yes</button>
-                <button class="btn cancel-button" data-dismiss="modal">Cancel</button>
+                <button class="btn cancel-button edit" (click)="fordelete()" data-dismiss="modal" >Yes</button>
+                <button class="btn cancel-button delete" data-dismiss="modal">Cancel</button>
             </div>
         </div>
     </div>

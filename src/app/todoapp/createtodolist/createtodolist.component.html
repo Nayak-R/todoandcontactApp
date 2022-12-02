@@ -1,0 +1,17 @@
+<div id="form">
+    <h1>Add a new task</h1>
+    <button (click)="close()" id="close">Close</button> <br><br><br><br>
+    <p>Task to be added to TODO LIst : -</p>
+    <input type="text" name="" placeholder="Describe your task" [(ngModel)]="tasklist.task">
+    <br><br>
+    <p>Date : -</p>
+    <input type="date" name="" [(ngModel)]="tasklist.date">
+    <br><br>
+    <p>Time : -</p>
+    <input type="time" name="" id="time" [(ngModel)]="tasklist.time">
+    <br><br>
+    <button *ngIf="create" (click)="save()" id="save" type="button">Save</button>
+    <button *ngIf="!create" (click)="update()" id="update" type="button">Update</button>
+    <button id="reset" (click)="reset()" type="button">Reset</button>
+
+</div>

@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
+import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ContactappService } from '../contactapp.service';
 import { Contact } from '../enity/Contact';
 
 @Component({
@@ -9,31 +12,55 @@ import { Contact } from '../enity/Contact';
 })
 export class ViewcontactComponent implements OnInit {
 
-  contact!: Contact[];
+  displayedColumns: string[] = ['sl', 'name', 'sname', 'company', 'email', 'mobileNumber', 'edit', 'delete'];
+  contact: Contact[] = [];
   ind!: number
   title = 'Contact Book';
-  constructor(private router: Router, private route: ActivatedRoute) {
+
+  dataSource: any
+
+
+  constructor(private router: Router, private route: ActivatedRoute, private titleset: Title, private contactappService: ContactappService) {
   }
 
   ngOnInit(): void {
-    this.contact = JSON.parse(window.localStorage.getItem("contactlist") as any);
-
+    this.titleset.setTitle(this.title)
+    
+    this.contactappService.getAllContacts().subscribe(data => {
+      this.contact = <Contact[]>data;
+      this.dataSource = new MatTableDataSource(this.contact);
+    }, error => {
+      this.contact=[];
+      console.log("Error in view")
+    })
   }
 
   createContact() {
     this.router.navigate(['contactapp/createcontact/true/0']);
   }
-  edit(index: number) {
-    this.router.navigate(['contactapp/createcontact/false/' + index]);
+
+  edit(id: number) {
+    this.router.navigate(['contactapp/createcontact/false/' + id]);
   }
-  deletex(index: number) {
-    this.ind = index
+
+  deletex(id: number) {
+    this.ind = id
   }
+
   fordelete() {
 
-    this.contact.splice(this.ind, 1);
+    this.contactappService.deleteContact(this.ind).subscribe(data => {
+    }, error => {
+      console.log("Error in delete")
+    })
 
-    localStorage.setItem("contactlist", JSON.stringify(this.contact));
+    this.contactappService.getAllContacts().subscribe(data => {
+      this.contact = <Contact[]>data;
+      this.dataSource = new MatTableDataSource(this.contact);
+    }, error => {
+      this.contact=[];
+      console.log("Error in view")
+    })
 
   }
 
