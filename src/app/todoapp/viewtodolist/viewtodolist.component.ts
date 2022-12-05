@@ -14,23 +14,23 @@ import { TodoappServer } from '../todoapp.service';
 
 export class ViewtodolistComponent implements OnInit {
 
-  title='View Task List'
+  title = 'View Task List'
   displayedColumns: string[] = ['sl', 'task', 'date', 'time', 'edit', 'delete']
   tasklist !: Tasklist[];
-  ind!: number
+  id!: number
 
-  dataSource : any
+  dataSource: any
 
-  constructor(private router: Router, private route: ActivatedRoute, private titleset:Title, private todoappServer: TodoappServer) {  }
+  constructor(private router: Router, private route: ActivatedRoute, private titleset: Title, private todoappServer: TodoappServer) { }
 
   ngOnInit(): void {
     this.titleset.setTitle(this.title)
 
     this.todoappServer.getAllTask().subscribe(data => {
-      this.tasklist=<Tasklist[]>data;
+      this.tasklist = <Tasklist[]>data;
       this.dataSource = new MatTableDataSource(this.tasklist);
     }, error => {
-      this.tasklist=[];
+      this.tasklist = [];
       console.log("Error in view")
     })
   }
@@ -40,20 +40,25 @@ export class ViewtodolistComponent implements OnInit {
   }
 
   fordelete() {
-    console.log(this.ind)
 
-    this.todoappServer.deleteTask(this.ind).subscribe(data => {
+    this.todoappServer.deleteTask(this.id).subscribe(data => {
       this.tasklist = <Tasklist[]>data;
+      this.todoappServer.getAllTask().subscribe(data => {
+        this.tasklist = <Tasklist[]>data;
+        this.dataSource = new MatTableDataSource(this.tasklist);
+      }, error => {
+        this.tasklist = [];
+        console.log("Error in view")
+      })
     }, error => {
+      this.todoappServer.getAllTask().subscribe(data => {
+        this.tasklist = <Tasklist[]>data;
+        this.dataSource = new MatTableDataSource(this.tasklist);
+      }, error => {
+        this.tasklist = [];
+        console.log("Error in view")
+      })
       console.log("Error in delete")
-    })
-
-    this.todoappServer.getAllTask().subscribe(data => {
-      this.tasklist=<Tasklist[]>data;
-      this.dataSource = new MatTableDataSource(this.tasklist);
-    }, error => {
-      this.tasklist=[];
-      console.log("Error in view")
     })
 
   }
@@ -62,6 +67,6 @@ export class ViewtodolistComponent implements OnInit {
     this.router.navigate(['todoapp/createtodolist/false/' + id]);
   }
   deletex(id: number) {
-    this.ind = id
+    this.id = id
   }
 }
