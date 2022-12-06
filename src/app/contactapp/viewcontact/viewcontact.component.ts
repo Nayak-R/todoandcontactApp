@@ -4,6 +4,7 @@ import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ContactappService } from '../contactapp.service';
 import { Contact } from '../enity/Contact';
+import {MatDialog, MatDialogRef} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-viewcontact',
@@ -65,3 +66,4 @@ export class ViewcontactComponent implements OnInit {
   }
 
 }
+

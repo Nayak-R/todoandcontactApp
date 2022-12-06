@@ -66,6 +66,15 @@
     background-color: rgb(255, 0, 238);
 }
 
+th{
+    color: rgb(151, 20, 187);
+    font-weight: bold;
+    font-size: 15px;
+}
+th.mat-header-cell{
+    text-align: center;
+}
+
 .add-btn {
     padding: 10px;
     background-color: dodgerblue;

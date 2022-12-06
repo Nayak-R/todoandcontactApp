@@ -8,6 +8,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatTableModule } from '@angular/material/table';
 import { ContactappService } from './contactapp.service';
 import { ContactappComponent } from './contactapp.component';
+import {MatDialogModule} from '@angular/material/dialog';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { ContactappComponent } from './contactapp.component';
     FormsModule,
     ReactiveFormsModule,
     ContactappRoutingModule,
-    MatTableModule
+    MatTableModule,
+    MatDialogModule
   ],
   bootstrap: [ContactappComponent],
   providers: [ContactappService]

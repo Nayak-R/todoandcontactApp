@@ -53,32 +53,6 @@
                 <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
               </table>
 
-            <!-- <div id="table">
-                <table class="table table-striped">
-                    <tr>
-                        <th>Sl No.</th>
-                        <th>Task</th>
-                        <th>Date</th>
-                        <th>Time</th>
-                        <th>Edit</th>
-                        <th>Delete</th>
-                    </tr>
-
-                    <tbody *ngFor="let todo of tasklist;let i=index;">
-
-                        <td>{{i+1}}</td>
-                        <td>{{todo.taskname}}</td>
-                        <td>{{todo.date}}</td>
-                        <td>{{todo.time}}</td>
-                        <td><button id="edit-btn" (click)="edit(i)" class="edit">Edit</button></td>
-                        <td><button id="delete-btn" (click)="deletex(i)" data-toggle="modal" data-target="#DeleteModal"
-class="delete">Delete</button></td>
-
-                    </tbody>
-
-                </table>
-            </div> -->
-
         </div>
 
     </div>

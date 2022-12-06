@@ -8,7 +8,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatTableModule} from '@angular/material/table';
 import { TodoappComponent } from './todoapp.component';
 import { TodoappServer } from './todoapp.service';
-
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,9 @@ import { TodoappServer } from './todoapp.service';
     FormsModule,
     ReactiveFormsModule,
     TodoappRoutingModule,
-    MatTableModule
+    MatTableModule,
+    MatDatepickerModule,
+    MatInputModule
   ],
   bootstrap: [TodoappComponent],
   providers: [TodoappServer]

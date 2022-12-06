@@ -1,15 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Tasklist } from '../entity/Tasklist';
 import { TodoappServer } from '../todoapp.service';
+
 
 @Component({
   selector: 'app-createtodolist',
   templateUrl: './createtodolist.component.html',
   styleUrls: ['./createtodolist.component.css']
 })
+
 export class CreatetodolistComponent implements OnInit {
 
   constructor(private router: Router, private route: ActivatedRoute, private titleset:Title, private todoappService: TodoappServer) { }
@@ -44,8 +45,6 @@ export class CreatetodolistComponent implements OnInit {
 
   save() {
 
-    console.log(this.tasklist)
-
     this.todoappService.addTask(this.tasklist).subscribe(data =>{
       this.router.navigate(['todoapp/viewtodolist'])
     }, error =>{
@@ -68,3 +67,5 @@ export class CreatetodolistComponent implements OnInit {
   }
 
 }
+
+

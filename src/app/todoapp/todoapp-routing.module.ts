@@ -2,6 +2,9 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CreatetodolistComponent } from './createtodolist/createtodolist.component';
 import { ViewtodolistComponent } from './viewtodolist/viewtodolist.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 const routes: Routes = [
   {
@@ -24,6 +27,6 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule, MatFormFieldModule, MatDatepickerModule, MatNativeDateModule]
 })
 export class TodoappRoutingModule { }
